@@ -13,7 +13,7 @@ def all_artwork(request):
         likes = Like.objects.filter(user=request.user)
         for like in likes:
             likes_dictionary[like.artwork_id] = True
-    return render(request, 'artwork1/all_artwork.html',
+    return render(request, 'picture/all_artwork.html',
                   {'artwork_sale': all_unsold, 'artwork_sold': all_sold,
                    'likes': likes_dictionary})
 
@@ -47,7 +47,7 @@ def artwork_detail(request):
     is_liked = False
     if like:
         is_liked = True
-    return render(request, 'artwork1/artwork_detail.html', {'artwork': artwork,
+    return render(request, 'picture/artwork_detail.html', {'artwork': artwork,
                                                             'liked': is_liked,
                                                             'form': form,
                                                             'comment': comments_already_recieved})
