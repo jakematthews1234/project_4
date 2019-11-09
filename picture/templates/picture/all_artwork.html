@@ -2,4 +2,14 @@
 
 {% block content %}
     <h1>hello.</h1>
+    {% for art in artwork_sale %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{ art.picture }}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ art.title }}</h5>
+    <p class="card-text">{{ art.description }}</p>
+    <a href="{% url 'artwork_detail' %}?id={{ art.id }}" class="btn btn-primary">View details</a>
+      {% endfor %}
+  </div>
+</div>
 {% endblock %}

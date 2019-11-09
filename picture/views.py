@@ -9,7 +9,7 @@ def all_artwork(request):
 
     likes_dictionary = {}
     if request.user:
-        likes = Like.objects.filter(user=request.user)
+        likes = Like.objects.all()
         for like in likes:
             likes_dictionary[like.artwork_id] = True
     return render(request, 'picture/all_artwork.html',

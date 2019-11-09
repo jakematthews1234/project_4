@@ -7,7 +7,7 @@ class Like_Admin(admin.ModelAdmin):
 
 
 class Artwork_Admin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'date_created', 'status', 'picture', 'likes')
+    list_display = ('title', 'description', 'date_created', 'status', 'picture')
 
 
 admin.site.register(Artwork, Artwork_Admin)
