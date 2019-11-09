@@ -1,5 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect
-from django.utils import timezone
+from django.shortcuts import render, HttpResponseRedirect
 from .models import Artwork, Comment, Like
 from .form import Comment_Form
 
