@@ -3,7 +3,7 @@ from django.utils import timezone
 from user.models import User
 
 
-class Artwork(models.Models):
+class Artwork(models.Model):
     SOLD = 'sold'
     FOR_SALE = 'for sale'
     ARTWORK_STATUS_CHOICES = (
