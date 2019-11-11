@@ -1,15 +1,20 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+    {# display all artwork in a bootstrap card format #}
     <h1>hello.</h1>
+    <div class="row">
     {% for art in artwork_sale %}
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{ art.picture }}" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ art.title }}</h5>
-    <p class="card-text">{{ art.description }}</p>
-    <a href="{% url 'artwork_detail' %}?id={{ art.id }}" class="btn btn-primary">View details</a>
-      {% endfor %}
-  </div>
-</div>
+            <div class="col-sm-6 col-md-4">
+                <div class="card text-center">
+                    <img class="card-img-top mx-auto" src="{{ art.picture }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ art.title }}</h5>
+                    <a href="{% url 'artwork_detail' %}?id={{ art.id }}" class="btn btn-primary mx-auto">View details</a>
+                        </div>
+                </div>
+            </div>
+    {% endfor %}
+
+    </div>
 {% endblock %}

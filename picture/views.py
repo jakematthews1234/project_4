@@ -29,6 +29,7 @@ def artwork_like(request):
     artwork = Artwork.objects.get(id=artwork_number)
     user = request.user
     like = Like(user=user, artwork=artwork)
+    """ Save the like in the database, attached to the correct artwork piece using its unique ID """
     like.save()
     return HttpResponseRedirect(following_page)
 
