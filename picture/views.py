@@ -4,9 +4,11 @@ from .form import Comment_Form
 
 
 def all_artwork(request):
+    """ Creating the options for artwork, being sold or not sold. """
     all_unsold = Artwork.objects.filter(status=Artwork.FOR_SALE).order_by('-likes')
     all_sold = Artwork.objects.filter(status=Artwork.SOLD)
 
+    """ Creating the likes dictionary """
     likes_dictionary = {}
     if request.user:
         likes = Like.objects.all()
@@ -18,6 +20,8 @@ def all_artwork(request):
 
 
 def artwork_like(request):
+    """ Creating the view that allows users to like a piece of individual artwork by grabbing the unique
+    'id' from the database and saving the like to that piece of artwork. """
     artwork_number = request.GET.get('id')
     following_page = 'artwork_detail?id='+str(artwork_number)
     if 'following' in request.GET:
@@ -30,7 +34,10 @@ def artwork_like(request):
 
 
 def artwork_detail(request):
+    """ View that grabs the artwork and its unique id's; allowing users to leave a comment on any artwork within
+     the database. """
     artwork = Artwork.objects.get(id=request.GET.get('id'))
+    """ Import the Comment_form from models  """
     form = Comment_Form()
     try:
         like = Like.objects.get(artwork=artwork, user=request.user)

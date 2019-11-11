@@ -4,6 +4,7 @@ from user.models import User
 
 
 class Blog(models.Model):
+    """ Creating the model for Blog """
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     body = models.TextField()
