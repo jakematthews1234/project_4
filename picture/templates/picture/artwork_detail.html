@@ -1,8 +1,17 @@
-style this page with css.
-larger view model compartments :
-picture 
-title 
-description
-date created
-status
-likes
+{% extends "base.html" %}
+{% block content %}
+
+<h1> {% art.title %}</h1>
+<img src="{% art.picture %}" alt="oops! something went wrong.">
+<h2>{% art.description %} </h2>
+<h3>{% art.date_created %} <h3>
+<h4>{% art.likes %}</h4>
+<h5>{% art.likes %} </h5>
+<button> Purchase </button>
+
+
+
+
+
+{% endfor %}
+{% endblock %}
