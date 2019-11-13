@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-{% for art in artwork_sale %}
-<h1> {{art.title }}</h1>
-<img src="{{ art.picture }}" alt="oops! something went wrong.">
-<h2>{{ art.description }}</h2>
-<h3>{{ art.date_created }}</h3>
-<h4>{{ art.likes }}</h4>
-<h5>{{ art.likes }}</h5>
-<p><a href="/"></a></p>
-            <button type="submit" class="btn btn-primary">Purchase</button>
-{% endfor %}
+
+    <h1> {{ artwork.title }}</h1>
+    <img src="{{ artwork.picture }}" alt="oops! something went wrong.">
+    <h2>{{ artwork.description }}</h2>
+    <h3>{{ artwork.date_created }}</h3>
+    <h4>{{ artwork.status }}</h4>
+    <h5>{{ artwork.likes }}</h5>
+    <h4> {{ artwork.price }}</h4>
+    <p><a href="/"></a></p>
+    <button type="submit" class="btn btn-primary">Purchase</button>
 {% endblock %}
+
+

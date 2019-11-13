@@ -38,6 +38,7 @@ def artwork_detail(request):
     """ View that grabs the artwork and its unique id's; allowing users to leave a comment on any artwork within
      the database. """
     artwork = Artwork.objects.get(id=request.GET.get('id'))
+    print(artwork)
     """ Import the Comment_form from models  """
     form = Comment_Form()
     try:

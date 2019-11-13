@@ -22,13 +22,17 @@ class Artwork(models.Model):
     date_created = models.DateTimeField(default= timezone.now)
     status = models.CharField(max_length=8, choices=ARTWORK_STATUS_CHOICES, default=FOR_SALE)
     likes = models.ManyToManyField(User, through='Like', related_name='Liker')
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=20)
+
+    def __str__(self):
+        return str(self.price) + ": $"
 
     def __str__(self):
         return self.title
 
 
 class Like(models.Model):
-    """ When both user or artwork are deleted from the database, delete the Likes the artwork
+    """ When either user or artwork are deleted from the database, delete the Likes the artwork
     or the user has added. """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
