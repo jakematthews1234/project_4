@@ -10,6 +10,7 @@
                     <img class="card-img-top mx-auto" src="{{ art.picture }}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{ art.title }}</h5>
+                     <p class="card-text">{{ art.date_created }}</p>
                     <a href="{% url 'artwork_detail' %}?id={{ art.id }}" class="btn btn-primary mx-auto">View details</a>
                         </div>
                 </div>
