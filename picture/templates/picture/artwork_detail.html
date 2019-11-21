@@ -7,6 +7,26 @@
     <h3>{{ artwork.date_created }}</h3>
     <h4>{{ artwork.status }}</h4>
     <h5> Price: £500</h5>
+    <form action="{% url 'buy_artwork' %}?id={{ artwork.id }}&follow={{ request.get_full_path }}" method="POST">
+    {% csrf_token %}
+    <script
+        src="https://checkout.stripe.com/checkout.js"
+        class="stripe-button"
+        data-key="pk_test_3Zjs2Ll1Nytb05pFIyFatx3K00xH9q0iE5"
+        data-amount="50000"
+        data-name="artwork"
+        data-description="artwork cost"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-label="Buy now"
+        data-currency="GBP"
+        ></script>
+    </form>
 {% endblock %}
+
+
+ <script src="https://js.stripe.com/v3/"></script>
+
+
 
 

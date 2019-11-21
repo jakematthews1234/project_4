@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .models import Artwork, Comment, Like
-from .form import Comment_Form
-import stripe
+from .form import CommentForm
+
 
 
 def all_artwork(request):
@@ -39,9 +39,8 @@ def artwork_detail(request):
     """ View that grabs the artwork and its unique id's; allowing users to leave a comment on any artwork within
      the database. """
     artwork = Artwork.objects.get(id=request.GET.get('id'))
-    print(artwork)
     """ Import the Comment_form from models  """
-    form = Comment_Form()
+    form = CommentForm()
     try:
         like = Like.objects.get(artwork=artwork, user=request.user)
     except Like.DoesNotExist:
@@ -61,21 +60,15 @@ def artwork_detail(request):
                                                             'form': form,
                                                             'comment': comments_already_recieved})
 
-# Set your secret key: remember to change this to your live secret key in production
-# See your keys here: https://dashboard.stripe.com/account/apikeys
+
+def buy_artwork(request):
+    artwork_id = request.GET.get('id')
+    follow_on_page = "picture/all_artwork.html"
+    if "follow" in request.GET:
+        follow_on_page = request.GET.get('follow')
+    artwork = Artwork.objects.get(id=request.GET.get('id'))
+    artwork.status = 'sold'
+    artwork.save()
+    return HttpResponseRedirect(follow_on_page)
 
 
-stripe.api_key = ''
-
-session = stripe.checkout.Session.create(
-  payment_method_types=['card'],
-  line_items=[{
-    'name': 'artwork',
-    'description': 'an original piece of artwork',
-    'amount': 500,
-    'currency': 'gbp',
-    'quantity': 1,
-  }],
-  success_url='https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
-  cancel_url='https://example.com/cancel',
-)
