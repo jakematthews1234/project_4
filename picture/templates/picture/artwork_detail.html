@@ -3,6 +3,18 @@
 
     <h1> {{ artwork.title }}</h1>
     <img src="{{ artwork.picture }}" alt="oops! something went wrong.">
+    <br>
+    {% if liked %}
+    <div class="like">
+        <a class="btn btn-info float-right text-white" disabled> you've liked, thank you!</a>
+    </div>
+    {% else %}
+         <div class="like">
+        <a class="btn btn-info float-right text-white" href="{% url 'artwork_like' %}?id={{ artwork.id }}&follow={{ request.get_full_path }}"
+        > Like</a>
+    </div>
+    {% endif %}
+    <br>
     <h2>{{ artwork.description }}</h2>
     <h3>{{ artwork.date_created }}</h3>
     <h4>{{ artwork.status }}</h4>
@@ -22,6 +34,24 @@
         data-currency="GBP"
         ></script>
     </form>
+    <div class="comments">
+    <h4> Comments:</h4>
+    {% for comment in comments %}
+        <div class="timeline-comment-wrap">
+        <div class="timeline-comment">
+            <div class="timeline-comment-header">
+                <h3 class="timeline-comment-header-text">{{ comment.user }} said on {{ comment.date_commented }}</h3>
+            </div>
+            <p class="pl-2"> {{ comment.comment }}</p>
+        </div>
+        </div>
+    {% endfor %}
+    <form method="POST" class="post-form" action="{{ request.get_full_path }}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default"> Submit</button>
+    </form>
+    </div>
 {% endblock %}
 
 

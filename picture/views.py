@@ -3,7 +3,6 @@ from .models import Artwork, Comment, Like
 from .form import CommentForm
 
 
-
 def all_artwork(request):
     """ Creating the options for artwork, being sold or not sold. """
     all_unsold = Artwork.objects.filter(status=Artwork.FOR_SALE).order_by('-likes')
@@ -50,7 +49,7 @@ def artwork_detail(request):
         comment = Comment(user=request.user, artwork=artwork, comment=comment)
         comment.save()
 
-    comments_already_recieved = Comment.objects.filter(artwork=artwork)
+    comments_already_received = Comment.objects.filter(artwork=artwork)
 
     is_liked = False
     if like:
@@ -58,11 +57,10 @@ def artwork_detail(request):
     return render(request, 'picture/artwork_detail.html', {'artwork': artwork,
                                                             'liked': is_liked,
                                                             'form': form,
-                                                            'comment': comments_already_recieved})
+                                                            'comments': comments_already_received})
 
 
 def buy_artwork(request):
-    artwork_id = request.GET.get('id')
     follow_on_page = "picture/all_artwork.html"
     if "follow" in request.GET:
         follow_on_page = request.GET.get('follow')
