@@ -207,5 +207,4 @@ fabric.properties
 .idea/**/markdown-navigator/
 
 # End of https://www.gitignore.io/api/django,pycharmenv.py 
-env.py 
-env.py 
+.env
