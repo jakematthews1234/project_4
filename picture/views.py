@@ -61,6 +61,8 @@ def artwork_detail(request):
 
 
 def buy_artwork(request):
+    """ View that allows users to purchase artwork, and then leaving the artwork sold, thus deleting the artwork from
+    the website"""
     follow_on_page = "picture/all_artwork.html"
     if "follow" in request.GET:
         follow_on_page = request.GET.get('follow')

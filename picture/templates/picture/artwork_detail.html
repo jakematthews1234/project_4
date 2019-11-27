@@ -1,32 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
-
+    {# grabbing data from the database and displaying it on the html page   #}
     <h1>{{ artwork.status }} - {{ artwork.title }} - {{ artwork.date_created }}</h1><br>
     <br>
-
+    {# grabbing the artwork picture to display it on the webpage, or alt   #}
     <img src="{{ artwork.picture }}" alt="oops! something went wrong.">
     <br>
+    {# if liked, stop the user from liking it again by disabling the button and leaving behind a thank you comment   #}
     {% if liked %}
     <div class="like">
         <a class="btn btn-info float-right text-white" disabled> you've liked, thank you!</a>
     </div>
     {% else %}
+        {# if the user has'nt liked the artwork, leave a like option enabled #}
          <div class="like">
         <a class="btn btn-info float-right text-white" href="{% url 'artwork_like' %}?id={{ artwork.id }}&follow={{ request.get_full_path }}"
         > Like</a>
     </div>
     {% endif %}
     <br>
+    {# add the artwork description to html page   #}
     <h2>{{ artwork.description }}</h2><br>
     <br>
-
+    {# Stripe payment option and purchase button using POST   #}
     <h5> Price: £500</h5>
     <form action="{% url 'buy_artwork' %}?id={{ artwork.id }}&follow={{ request.get_full_path }}" method="POST">
     {% csrf_token %}
     <script
         src="https://checkout.stripe.com/checkout.js"
         class="stripe-button"
-        data-key="pk_test_3Zjs2Ll1Nytb05pFIyFatx3K00xH9q0iE5"
+        data-key=""
         data-amount="50000"
         data-name="artwork"
         data-description="artwork cost"
@@ -36,18 +39,21 @@
         data-currency="GBP"
         ></script>
     </form>
+    {# giving the user the ability to leave comments on artwork   #}
     <div class="comments">
     <h4> Comments:</h4>
     {% for comment in comments %}
         <div class="timeline-comment-wrap">
         <div class="timeline-comment">
             <div class="timeline-comment-header">
+                {# display all previous comments with the user who made the post and the date it was commented on #}
                 <h3 class="timeline-comment-header-text">{{ comment.user }} said on {{ comment.date_commented }}</h3>
             </div>
             <p class="pl-2"> {{ comment.comment }}</p>
         </div>
         </div>
     {% endfor %}
+    {# POST method to leave a comment   #}
     <form method="POST" class="post-form" action="{{ request.get_full_path }}">
         {% csrf_token %}
         {{ form.as_p }}

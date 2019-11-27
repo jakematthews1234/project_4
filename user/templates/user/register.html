@@ -3,18 +3,22 @@
 {% if form.errors %}
     {{ form.errors }}
 {% endif %}
+{#    registration form #}
 <form method="post" action="{% url 'register_user' %}">
 {% csrf_token %}
 <table>
 <tr>
+{#    username #}
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
 </tr>
 <tr>
+{#    password 1#}
     <td>{{ form.password1.label_tag }}</td>
     <td>{{ form.password1 }}</td>
 </tr>
 <tr>
+{#    password 2#}
     <td>{{ form.password2.label_tag }}</td>
     <td>{{ form.password2 }}</td>
 </tr>

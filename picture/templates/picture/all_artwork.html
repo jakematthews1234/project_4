@@ -6,10 +6,13 @@
     {% for art in artwork_sale %}
             <div class="col-sm-6 col-md-4">
                 <div class="card text-center">
+                    {# adding the artwork picture from the database #}
                     <img class="card-img-top mx-auto" src="{{ art.picture }}" alt="Card image cap">
                 <div class="card-body">
+                    {# adding the artwork title and date created from the database #}
                     <h5 class="card-title">{{ art.title }}</h5>
                      <p class="card-text">{{ art.date_created }}</p>
+                    {#  grabbing the artwork id, and using it to redirect to artwork_detail page #}
                     <a href="{% url 'artwork_detail' %}?id={{ art.id }}" class="btn btn-primary mx-auto">View details</a>
                         </div>
                 </div>

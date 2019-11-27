@@ -2,6 +2,7 @@
 {% block content %}
 <h1> My blog </h1> <br>
     <br>
+{# add all blog information to page, displaying it from the database #}
 {% for blogs in blogs %}
     <h3> {{ blogs.title }} </h3>
     <h4> {{ blogs.author }}</h4>

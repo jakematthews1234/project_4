@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% if form.errors %}
+{#    if the form returns an error, display message #}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 {% if next %}
@@ -11,14 +12,17 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
+{#    login form #}
 <form method="post" action="{% url 'login_user' %}">
 {% csrf_token %}
 <table>
 <tr>
+{#    username #}
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
 </tr>
 <tr>
+{#    password #}
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
