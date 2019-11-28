@@ -105,7 +105,7 @@ I also ran tests, such as:
 
 # Credits
 
-* All code within this project has been written by myself. 
+* All code within this project has been written by myself and no code has been copied from anywhere else. 
  
 * I took inspiration from other students via SLACK in order to build my app.
 
