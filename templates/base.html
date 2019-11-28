@@ -14,12 +14,17 @@
 </head>
 
  <body>
+
+        {# if user is signed in, show a welcome back message  #}
         {% if user.is_authenticated %}
             <div class="text-light font-italic bg-dark pt-2 pr-4 text-right">welcome back, {{request.user.username}}</div>
+
+        {# if the user is not signed in, show a sign in or register option #}
         {% else %}
             <div class="text-light font-italic bg-dark pt-2 pr-4 text-right">please login or register</div>
         {% endif %}
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                {# Title of website #}
                 <h1 class="text-light">Jakes Artwork</h1>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,14 +34,17 @@
                         <li class="nav-item ative">
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
+
+                        {# if the user is signed in, show this on the navigation bar #}
                         {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'all_artwork' %}">Art work</a>
                             </li>
-                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'all_blogs' %}">Blog</a>
                         </li>
+                        {% endif %}
+                        {# if the user is not aurhenticated, show login or register on the navigation bar #}
                         {% if not user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'login_user' %}">Login</a>
@@ -45,6 +53,7 @@
                                 <a class="nav-link" href="{% url 'register_user' %}">Register</a>
                             </li>
                         {% endif %}
+                        {# if the user is signed in, show a logout option  #}
                         {% if  user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout_user' %}">Logout</a>
@@ -61,6 +70,7 @@
                 </div>
             </div>
         </div>
+{# script sources #}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
