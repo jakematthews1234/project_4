@@ -5,6 +5,11 @@
 # UX Design
 ### This site was created with the intention of allowing users to purchase artwork created by 'me'. With this in mind, my website is typically aimed at young adults to elderly, however younger generations may also view the artwork, so I made sure it was user friendly to all ages. Typically users who go onto my site are either wishing to view artwork, which is easily done on the homepage or on the artwork page, or purchase artwork, which is also easily done through the click of view details, and then purchase. 
 
+
+
+
+
+
 # User Stories
 
 #### Joseph is doing a project on local artists within his area, and wants to find out information on an artists life.
