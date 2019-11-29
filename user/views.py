@@ -13,7 +13,7 @@ def register(request):
             new_user = form.save()
             authenticated_user = authenticate(username=new_user.username, password=request.POST['password2'])
             login(request, authenticated_user)
-            return HttpResponseRedirect(reverse('artwork'))
+            return HttpResponseRedirect(reverse('all_artwork'))
     else:
         """ If the user did not fill out the registration form correctly, redirect them back to the form
         to try again. """
