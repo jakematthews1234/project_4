@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from .models import Artwork, Comment, Like
 from .form import CommentForm
+from django.contrib.auth.decorators import login_required
 
 
 def all_artwork(request):
@@ -33,7 +34,7 @@ def artwork_like(request):
     like.save()
     return HttpResponseRedirect(following_page)
 
-
+@login_required
 def artwork_detail(request):
     """ View that grabs the artwork and its unique id's; allowing users to leave a comment on any artwork within
      the database. """
